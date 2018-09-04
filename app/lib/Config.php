@@ -50,18 +50,14 @@ class Config
     public static function set($key, $value)
     {
         $key_arr = explode('.', $key);
-        switch (count($key_arr)) {
-            case 1:
-                self::instance()->config[$key_arr[0]] = $value;
-                break;
-            case 2:
-                self::instance()->config[$key_arr[0]][$key_arr[1]] = $value;
-                break;
-            case 3:
-                self::instance()->config[$key_arr[0]][$key_arr[1]][$key_arr[2]] = $value;
-                break;
-            default:
-                throw new \Exception("配置标识不易过长！");
+        $count = count($key_arr) - 1;
+        $config = &self::instance()->config;
+        for ($i = 0; $i < $count; $i++) {
+            if (!isset($config[$key_arr[$i]])) {
+                $config[$key_arr[$i]] = null;
+            }
+            $config = &$config[$key_arr[$i]];
         }
+        $config[end($key_arr)] = $value;
     }
 }

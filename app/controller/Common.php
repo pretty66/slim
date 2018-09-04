@@ -19,7 +19,7 @@ class Common
 
     public function __construct(ContainerInterface $container)
     {
-        $this->container = $container;
-        $this->curl = $container->get('curl');
+        //$this->container = $container;
+        //$this->curl = $container->get('curl');
     }
 }

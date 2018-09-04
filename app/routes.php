@@ -3,19 +3,9 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-/*$app->get('/home', function () {
+//$app->any('/home', 'app\\controller\\Home:index');
+$app = App();
 
-});*/
-
-// 微信相关
-$app->group('/wechat', function () {
-
-});
-// 后台管理
-$app->group('/admin', function () {
+$app->get('/qrcode/get_content', 'app\\controller\\QrCode:getContent');
 
 
-});
-
-// test
-$app->any('/home', 'app\\controller\\Home:index');

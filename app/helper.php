@@ -1,5 +1,16 @@
 <?php
 
+if (!function_exists('App')) {
+    function &App($container = [])
+    {
+        static $app;
+        if (empty($app)) {
+            $app = new \Slim\App($container);
+        }
+        return $app;
+    }
+}
+
 if (!function_exists('dd')) {
     function dd(...$var)
     {
@@ -14,6 +25,7 @@ function pp(...$var)
         print_r($v);
     }
     echo '</pre>';
+    die;
 }
 
 #数据库查询
